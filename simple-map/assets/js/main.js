@@ -1,51 +1,58 @@
+
 require([
     "esri/Map",
-    "esri/views/MapView",
-    "esri/Graphic",
-    "esri/layers/GraphicsLayer"
-], function(Map, MapView, Graphic, GraphicsLayer) {
-    // Create a Map instance
+    "esri/views/SceneView",
+    "esri/layers/FeatureLayer",
+    "esri/renderers/UniqueValueRenderer"
+], function(Map, SceneView, FeatureLayer, UniqueValueRenderer) {
+    
+    // 1. Create the globe map
     const map = new Map({
-        basemap: "topo-vector" // Choose a basemap
+        basemap: "satellite" // High-quality satellite imagery
     });
 
-    // Create a MapView instance
-    const view = new MapView({
-        container: "viewDiv", // ID of the div where the map will be displayed
+    // 2. SceneView (3D)
+    const view = new SceneView({
+        container: "viewDiv",
         map: map,
-        center: [-100.33, 25.69], // Longitude, Latitude (default location)
-        zoom: 4 // Zoom level
+        camera: {
+            position: [0, 0, 20000000], // Start high up
+            tilt: 0
+        }
     });
 
-    // Create a GraphicsLayer to hold graphics (points, lines, polygons)
-    const graphicsLayer = new GraphicsLayer();
-    map.add(graphicsLayer);
+    // 3. FeatureLayer for the Peaks (Environmental Change)
+    const environmentalLayer = new FeatureLayer({
+        url: "YOUR_FEATURE_LAYER_URL", // Replace with your environmental change layer
+        renderer: {
+            type: "simple", // Use a simple renderer for 3D "peaks"
+            symbol: {
+                type: "point-3d", // 3D symbol
+                symbolLayers: [{
+                    type: "object", // Object for peaks
+                    resource: { primitive: "cylinder" }, // 3D cylinder shape
+                    material: { color: "red" }, // Change peak color
+                    height: "{ChangeRate} * 5000", // Height of the cylinder based on change rate
+                    width: 300000 // Width of the cylinder
+                }]
+            },
+            visualVariables: [{
+                type: "size", // Make the peak size proportional to the change rate
+                field: "ChangeRate",
+                minDataValue: 1,
+                maxDataValue: 10,
+                minSize: 500000,
+                maxSize: 3000000
+            }]
+        },
+        popupTemplate: {
+            title: "{LocationName}",
+            content: `
+                Change Rate: <b>{ChangeRate}</b><br>
+                Type: {ChangeType}<br>
+                Year: {Year}`
+        }
+    });
 
-    // Function to add a point graphic
-    function addPoint(event) {
-        const point = {
-            type: "point", // Geometry type
-            longitude: event.mapPoint.longitude,
-            latitude: event.mapPoint.latitude
-        };
-
-        const markerSymbol = {
-            type: "simple-marker", 
-            color: [226, 119, 40], // Orange
-            outline: {
-                color: [255, 255, 255], // White
-                width: 2
-            }
-        };
-
-        const pointGraphic = new Graphic({
-            geometry: point,
-            symbol: markerSymbol
-        });
-
-        graphicsLayer.add(pointGraphic);
-    }
-
-    // Listen for map clicks to add points
-    view.on("click", addPoint);
+    map.add(environmentalLayer); // Add the layer to the map
 });

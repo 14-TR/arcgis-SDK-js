@@ -1,0 +1,7 @@
+xarray
+pandas
+geopandas
+zarr
+shapely
+tarfile
+os

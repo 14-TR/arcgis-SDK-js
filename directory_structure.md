@@ -1,0 +1,34 @@
+# Directory Structure for `C:/Users/TR/Desktop/GIT/arcgis-SDK-js/backend/data/raw/gistemp.zarr`
+
+```
+gistemp.zarr/
+    gistemp1200_GHCNv4_ERSSTv5.zarr/
+        .zattrs
+        .zgroup
+        .zmetadata
+        lat/
+            .zarray
+            .zattrs
+            0
+        lon/
+            .zarray
+            .zattrs
+            0
+        tempanomaly/
+            .zarray
+            .zattrs
+            0.0.0
+            1.0.0
+            2.0.0
+            3.0.0
+            4.0.0
+            5.0.0
+        time/
+            .zarray
+            .zattrs
+            0
+        time_bnds/
+            .zarray
+            .zattrs
+            0.0
+```

@@ -1,13 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive ArcGIS Map</title>
-    <!-- ArcGIS JS API CSS -->
-    <link rel="stylesheet" href="https://js.arcgis.com/4.29/esri/themes/light/main.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>3D Environmental Change Map</title>
+        <link rel="stylesheet" href="https://js.arcgis.com/4.29/esri/themes/light/main.css">
+        <script src="https://js.arcgis.com/4.29/"></script>
+        <style>
+            html, body, #viewDiv {
+                padding: 0;
+                margin: 0;
+                height: 100%;
+                width: 100%;
+            }
+        </style>
+    </head>
 <body>
     <!-- Map Container -->
     <div id="viewDiv"></div>
@@ -17,4 +24,5 @@
     <!-- Custom JS -->
     <script src="assets/js/main.js"></script>
 </body>
+
 </html>

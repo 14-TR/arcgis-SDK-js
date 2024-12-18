@@ -1,0 +1,8 @@
+{
+    "_ARRAY_DIMENSIONS": [
+        "time",
+        "nv"
+    ],
+    "calendar": "proleptic_gregorian",
+    "units": "days since 1800-01-01"
+}
