@@ -1,28 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>3D Environmental Change Map</title>
-        <link rel="stylesheet" href="https://js.arcgis.com/4.29/esri/themes/light/main.css">
-        <script src="https://js.arcgis.com/4.29/"></script>
-        <style>
-            html, body, #viewDiv {
-                padding: 0;
-                margin: 0;
-                height: 100%;
-                width: 100%;
-            }
-        </style>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Environmental Change Map</title>
+    <link rel="stylesheet" href="https://js.arcgis.com/4.29/esri/themes/light/main.css">
+    <script src="https://js.arcgis.com/4.29/"></script>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
 <body>
+    <!-- Year Selection Control -->
+    <div id="controls">
+        <label for="yearSelector">Select Year:</label>
+        <select id="yearSelector">
+            <option value="2020">2020</option>
+            <option value="2021">2021</option>
+            <option value="2022">2022</option>
+            <option value="2023">2023</option>
+            <option value="2024">2024</option>
+        </select>
+    </div>
+
     <!-- Map Container -->
     <div id="viewDiv"></div>
 
-    <!-- ArcGIS JS API -->
-    <script src="https://js.arcgis.com/4.29/"></script>
     <!-- Custom JS -->
     <script src="assets/js/main.js"></script>
 </body>
-
 </html>
